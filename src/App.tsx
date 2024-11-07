@@ -14,6 +14,8 @@ import EpisodeDetailsPage from "./pages/episode-details";
 import { paths } from "./routes/paths";
 import { useAuth } from "./hooks/use-auth";
 import SignUpPage from "./pages/signup";
+import Header from "./components/nav/header";
+import MainLayout from "./components/layout/main-layout";
 
 function App() {
   const { userLoggedIn } = useAuth();
@@ -22,51 +24,55 @@ function App() {
     <Router
       future={{
         v7_startTransition: true,
+        v7_relativeSplatPath: true,
       }}
     >
-      <Routes>
-        {/* Public routes */}
-        <Route
-          path={paths.auth.login}
-          element={
-            !userLoggedIn ? (
-              <LoginPage />
-            ) : (
-              <Navigate to={paths.characters.root} />
-            )
-          }
-        />
-        <Route path={paths.auth.signUp} element={<SignUpPage />} />
-        {/* Private routes */}
-        <Route element={<PrivateRoute />}>
-          <Route path={paths.characters.root} element={<CharactersPage />} />
+      <Header />
+      <MainLayout>
+        <Routes>
+          {/* Public routes */}
           <Route
-            // path={paths.characters.details(":id")}
-            path="/characters/:id"
-            element={<CharacterDetailsPage />}
+            path={paths.auth.login}
+            element={
+              !userLoggedIn ? (
+                <LoginPage />
+              ) : (
+                <Navigate to={paths.characters.root} />
+              )
+            }
           />
-          <Route
-            // path={paths.location.details(":id")}
-            path="/location/:id"
-            element={<LocationDetailsPage />}
-          />
-          <Route
-            // path={paths.episode.details(":id")}
-            path="/episode/:id"
-            element={<EpisodeDetailsPage />}
-          />
-        </Route>
-
-        {/* Default route */}
-        <Route
-          path="*"
-          element={
-            <Navigate
-              to={userLoggedIn ? paths.characters.root : paths.auth.login}
+          <Route path={paths.auth.signUp} element={<SignUpPage />} />
+          {/* Private routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path={paths.characters.root} element={<CharactersPage />} />
+            <Route
+              // path={paths.characters.details(":id")}
+              path="/characters/:id"
+              element={<CharacterDetailsPage />}
             />
-          }
-        />
-      </Routes>
+            <Route
+              // path={paths.location.details(":id")}
+              path="/location/:id"
+              element={<LocationDetailsPage />}
+            />
+            <Route
+              // path={paths.episode.details(":id")}
+              path="/episode/:id"
+              element={<EpisodeDetailsPage />}
+            />
+          </Route>
+
+          {/* Default route */}
+          <Route
+            path="*"
+            element={
+              <Navigate
+                to={userLoggedIn ? paths.characters.root : paths.auth.login}
+              />
+            }
+          />
+        </Routes>
+      </MainLayout>
     </Router>
   );
 }
