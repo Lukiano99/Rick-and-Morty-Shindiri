@@ -6,14 +6,14 @@ import {
   Navigate,
 } from "react-router-dom";
 import PrivateRoute from "./routes/private-route";
-import LoginPage from "./pages/login";
-import CharactersPage from "./pages/characters";
-import CharacterDetailsPage from "./pages/character-details";
-import LocationDetailsPage from "./pages/location-details";
-import EpisodeDetailsPage from "./pages/episode-details";
+import LoginPage from "./pages/login-page";
+import CharactersPage from "./pages/characters-page";
+import CharacterDetailsPage from "./pages/character-details-page";
+import LocationDetailsPage from "./pages/location-details-page";
+import EpisodeDetailsPage from "./pages/episode-details-page";
 import { paths } from "./routes/paths";
 import { useAuth } from "./hooks/use-auth";
-import SignUpPage from "./pages/signup";
+import SignUpPage from "./pages/signup-page";
 import Header from "./components/nav/header";
 import MainLayout from "./components/layout/main-layout";
 
