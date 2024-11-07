@@ -31,7 +31,7 @@ function App() {
             )
           }
         />
-        <Route path="/signup" element={<SignUpPage />} />
+        <Route path={paths.auth.signUp} element={<SignUpPage />} />
 
         {/* Private routes */}
         <Route element={<PrivateRoute />}>
