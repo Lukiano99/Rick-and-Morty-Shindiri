@@ -21,15 +21,6 @@ const MainNav = ({
       >
         Chacarters
       </Link>
-      <Link
-        to={paths.episode.root}
-        className={cn(
-          "text-sm font-medium hover:text-primary transition-all text-muted-foreground",
-          location.pathname === paths.episode.root && "text-primary"
-        )}
-      >
-        Test
-      </Link>
     </nav>
   );
 };

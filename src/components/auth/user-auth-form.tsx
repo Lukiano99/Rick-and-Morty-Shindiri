@@ -43,7 +43,6 @@ export function UserAuthForm({ mode }: UserAuthFormProps) {
   });
 
   async function onSubmit(values: userAuthForm) {
-    console.log({ values });
     setIsLoading(true);
 
     if (mode === "login") {
@@ -53,7 +52,6 @@ export function UserAuthForm({ mode }: UserAuthFormProps) {
 
         return;
       });
-      setErrorMessage("");
     }
     if (mode === "signup") {
       await signUpWithEmailAndPassword({ ...values }).catch((err) => {
@@ -62,14 +60,13 @@ export function UserAuthForm({ mode }: UserAuthFormProps) {
 
         return;
       });
-      setErrorMessage("");
     }
 
     setIsLoading(false);
   }
 
   return (
-    <div className="flex w-full  items-center justify-center px-4">
+    <div className="flex w-full h-[90dvh]  items-center justify-center px-4">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl text-left">
