@@ -7,24 +7,29 @@ import {
 } from "react-router-dom";
 import PrivateRoute from "./routes/private-route";
 import LoginPage from "./pages/login";
-import SignUpPage from "./pages/signup";
 import CharactersPage from "./pages/characters";
 import CharacterDetailsPage from "./pages/character-details";
 import LocationDetailsPage from "./pages/location-details";
 import EpisodeDetailsPage from "./pages/episode-details";
 import { paths } from "./routes/paths";
+import { useAuth } from "./hooks/use-auth";
+import SignUpPage from "./pages/signup";
 
 function App() {
-  const isAuthenticated = !!localStorage.getItem("firebaseToken");
+  const { userLoggedIn } = useAuth();
 
   return (
-    <Router>
+    <Router
+      future={{
+        v7_startTransition: true,
+      }}
+    >
       <Routes>
         {/* Public routes */}
         <Route
           path={paths.auth.login}
           element={
-            !isAuthenticated ? (
+            !userLoggedIn ? (
               <LoginPage />
             ) : (
               <Navigate to={paths.characters.root} />
@@ -32,7 +37,6 @@ function App() {
           }
         />
         <Route path={paths.auth.signUp} element={<SignUpPage />} />
-
         {/* Private routes */}
         <Route element={<PrivateRoute />}>
           <Route path={paths.characters.root} element={<CharactersPage />} />
@@ -58,9 +62,7 @@ function App() {
           path="*"
           element={
             <Navigate
-              to={
-                isAuthenticated ? paths.characters.root : paths.characters.root
-              }
+              to={userLoggedIn ? paths.characters.root : paths.auth.login}
             />
           }
         />

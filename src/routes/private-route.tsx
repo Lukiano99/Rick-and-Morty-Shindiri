@@ -1,11 +1,12 @@
 // src/routes/PrivateRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
 import { paths } from "./paths";
+import { useAuth } from "@/hooks/use-auth";
 
 const PrivateRoute = () => {
-  const isAuthenticated = !!localStorage.getItem("firebaseToken");
+  const { userLoggedIn } = useAuth();
 
-  return isAuthenticated ? <Outlet /> : <Navigate to={paths.auth.login} />;
+  return userLoggedIn ? <Outlet /> : <Navigate to={paths.auth.login} />;
 };
 
 export default PrivateRoute;
