@@ -25,7 +25,7 @@ export const paths = {
   // CHARACTERS
   characters: {
     root: ROOTS.CHARACTERS,
-    details: (id: string) => `${ROOTS.CHARACTERS}/${id}`,
+    details: (id: number) => `${ROOTS.CHARACTERS}/${id}`,
   },
 
   // LOCATION
@@ -37,6 +37,6 @@ export const paths = {
   // EPISODE
   episode: {
     root: ROOTS.EPISODE,
-    details: (id: string) => `${ROOTS.EPISODE}/${id}`,
+    details: (id: number) => `${ROOTS.EPISODE}/${id}`,
   },
 };

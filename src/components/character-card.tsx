@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from "react";
 import { Character } from "@/types";
-import { Card, CardDescription, CardTitle } from "./ui/card";
-import { DotIcon, EyeIcon, MapPinIcon } from "lucide-react";
+import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
+import { EyeIcon, MapPinIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Badge } from "./ui/badge";
 
 interface CharacterCardProps {
   character: Character;
@@ -11,46 +11,59 @@ interface CharacterCardProps {
 
 const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   const { id, name, image, status, species, location, episode } = character;
-
   return (
-    <Card className=" min-w-[300px] hover:-translate-y-2 transition-all">
-      <div className="flex w-full p-2 pl-4 justify-between">
-        <div className="w-1/2 flex flex-col gap-2">
-          <CardDescription>#{id}</CardDescription>
-          <CardTitle className="min-h-12">{name}</CardTitle>
-          <CardDescription className="flex gap-1 items-center">
-            <MapPinIcon size={14} className="flex-shrink-0" />
-            <p className="truncate">{location.name}</p>
-          </CardDescription>
-          <CardDescription className="flex gap-1 items-center">
-            <EyeIcon size={14} className="flex-shrink-0" />
-            <p className="truncate">First seen in: {episode[0]}</p>
-          </CardDescription>
-          <CardDescription
+    <Card className="w-full max-w-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+      <div className="relative">
+        <img src={image} alt={name} className="w-full h-48 object-cover" />
+        <Badge
+          variant={
+            status === "Alive"
+              ? "success"
+              : status === "Dead"
+              ? "destructive"
+              : "secondary"
+          }
+          className="absolute top-3 right-3 gap-2"
+        >
+          <div
             className={cn(
-              "flex gap-1 items-center ml-1",
-              status === "Alive" && "text-green-500",
-              status === "Dead" && "text-red-500",
-              status === "unknown" && "text-muted-foreground"
+              "size-2 rounded-full",
+              status === "Alive"
+                ? "bg-green-500 animate-pulse"
+                : status === "Dead"
+                ? "bg-red-800"
+                : "bg-muted-foreground"
             )}
-          >
-            <div
-              className={cn(
-                "size-2 rounded-full",
-                status === "Alive" && "bg-green-500 animate-pulse",
-                status === "Dead" && "bg-red-500",
-                status === "unknown" && "bg-muted-foreground"
-              )}
-            />
-            <p className="truncate">
-              {status} - {species}
-            </p>
-          </CardDescription>
-        </div>
-        <div className="">
-          <img src={image} className="size-32  object-cover rounded-md" />
-        </div>
+          />
+          {status}
+        </Badge>
       </div>
+      <CardContent className="p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div className="">
+            <CardTitle className="text-2xl font-bold mb-1">{name}</CardTitle>
+            <CardDescription className="text-sm">
+              #{id} • {species}
+            </CardDescription>
+          </div>
+        </div>
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <MapPinIcon className="h-4 w-4 text-primary" />
+            <CardDescription className="text-sm flex items-center gap-1 truncate">
+              <p className="text-accent-foreground">Last known location:</p>
+              {location.name}
+            </CardDescription>
+          </div>
+          <div className="flex items-center gap-2">
+            <EyeIcon className="h-4 w-4 text-primary" />
+            <CardDescription className="text-sm flex items-center gap-1">
+              <p className="text-accent-foreground">First seen in:</p>
+              {episode[0].slice(32)}
+            </CardDescription>
+          </div>
+        </div>
+      </CardContent>
     </Card>
   );
 };
