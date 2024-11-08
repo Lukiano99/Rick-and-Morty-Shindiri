@@ -109,11 +109,11 @@ const CharacterDetails = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="w-[600px]">
             <CardHeader>
               <CardTitle>Appearances</CardTitle>
             </CardHeader>
-            <CardContent className="min-w-[500px]">
+            <CardContent>
               <Tabs defaultValue="episodes" className="w-full">
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="episodes">Episodes</TabsTrigger>
@@ -145,15 +145,28 @@ const CharacterDetails = () => {
                 {episodes && (
                   <TabsContent value="statistics" className="mt-4">
                     <div className="space-y-2">
-                      <p>Total Episodes: {episodes.length}</p>
-                      <p>
-                        First Appearance: {episodes[0].name} (
-                        {episodes[0].air_date})
-                      </p>
-                      <p>
-                        Latest Appearance: {episodes[episodes.length - 1].name}{" "}
-                        ({episodes[episodes.length - 1].air_date})
-                      </p>
+                      <div className="flex items-center justify-between w-full">
+                        <p>Total Episodes: </p>
+                        <p>{episodes.length}</p>
+                      </div>
+                      <div className="flex items-center justify-between w-full">
+                        <p>First Appearance:</p>
+                        <p>
+                          {episodes[0].name}{" "}
+                          <span className="text-muted-foreground">
+                            ({episodes[0].air_date})
+                          </span>
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between w-full">
+                        <p>Latest Appearance:</p>
+                        <p>
+                          {episodes[episodes.length - 1].name}{" "}
+                          <span className="text-muted-foreground">
+                            ({episodes[episodes.length - 1].air_date})
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </TabsContent>
                 )}
