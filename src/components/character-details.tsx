@@ -20,6 +20,7 @@ import { Badge } from "./ui/badge";
 import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
 import { paths } from "@/routes/paths";
 import { Separator } from "./ui/separator";
+import SkeletonCharacter from "./skeletons/skeleton-character";
 
 const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,7 +34,7 @@ const CharacterDetails = () => {
 
   const { episodes } = useFetchEpisodes(episodeIds);
 
-  if (isLoading || !character) return <div>Loading...</div>;
+  if (isLoading || !character) return <SkeletonCharacter />;
   if (error) return <div>{error}</div>;
 
   return (

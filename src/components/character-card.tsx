@@ -29,7 +29,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
             className={cn(
               "size-2 rounded-full",
               status === "Alive"
-                ? "bg-green-500 animate-pulse"
+                ? "bg-green-800 animate-pulse"
                 : status === "Dead"
                 ? "bg-red-800"
                 : "bg-muted-foreground"
