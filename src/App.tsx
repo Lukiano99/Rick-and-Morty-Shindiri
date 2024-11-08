@@ -46,18 +46,15 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path={paths.characters.root} element={<CharactersPage />} />
             <Route
-              // path={paths.characters.details(":id")}
-              path="/characters/:id"
+              path={`${paths.characters.root}/:id`}
               element={<CharacterDetailsPage />}
             />
             <Route
-              // path={paths.location.details(":id")}
-              path="/location/:id"
+              path={`${paths.location.root}/:id`}
               element={<LocationDetailsPage />}
             />
             <Route
-              // path={paths.episode.details(":id")}
-              path="/episode/:id"
+              path={`${paths.episode.root}/:id`}
               element={<EpisodeDetailsPage />}
             />
           </Route>

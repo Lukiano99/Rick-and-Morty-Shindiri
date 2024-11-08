@@ -1,4 +1,3 @@
-// src/components/loading-button.tsx
 import { Button, ButtonProps } from "@/components/ui/button";
 import { Loader2Icon } from "lucide-react";
 import React from "react";

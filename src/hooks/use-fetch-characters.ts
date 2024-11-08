@@ -20,7 +20,6 @@ export const useFetchCharacters = (searchQuery: string) => {
       const response = await axios.get(rickAndMortyConfig.characters, {
         params: { page, name: searchQuery },
       });
-      toast.success("Fetched successfully");
 
       if (response.data.results.length === 0) {
         setHasMore(false);

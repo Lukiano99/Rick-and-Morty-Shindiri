@@ -1,4 +1,3 @@
-// src/hooks/use-fetch-single-character.ts
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Character } from "@/types";

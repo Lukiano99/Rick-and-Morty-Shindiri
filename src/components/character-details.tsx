@@ -88,18 +88,36 @@ const CharacterDetails = () => {
                   </div>
                 )}
               </div>
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="h-4 w-4 text-primary" />
-                <CardDescription>
-                  Origin: {character.origin.name}
-                </CardDescription>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPinIcon className="h-4 w-4 text-primary" />
-                <CardDescription>
-                  Current Location: {character.location.name}
-                </CardDescription>
-              </div>
+              {character.origin.url ? (
+                <Link
+                  to={paths.location.details(character.origin.url.slice(-1))}
+                >
+                  <div className="flex items-center gap-2">
+                    <MapPinIcon className="h-4 w-4 text-primary" />
+                    <CardDescription>
+                      Origin: {character.origin.name}
+                    </CardDescription>
+                  </div>
+                </Link>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="h-4 w-4 text-primary" />
+                  <CardDescription>
+                    Origin: {character.origin.name}
+                  </CardDescription>
+                </div>
+              )}
+              <Link
+                to={paths.location.details(character.location.url.slice(-1))}
+              >
+                <div className="flex items-center gap-2">
+                  <MapPinIcon className="h-4 w-4 text-primary" />
+                  <CardDescription>
+                    Current Location: {character.location.name}
+                  </CardDescription>
+                </div>
+              </Link>
+
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-4 w-4 text-primary" />
                 <CardDescription>

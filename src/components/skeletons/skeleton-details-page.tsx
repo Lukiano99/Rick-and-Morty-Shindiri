@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
-const SkeletonEpisode = () => {
+const SkeletonDetailsPage = () => {
   return (
     <div className="container w-full">
       <Skeleton className="mb-4 h-8 w-40" /> {/* Back button-like Skeleton */}
@@ -58,4 +58,4 @@ const SkeletonEpisode = () => {
     </div>
   );
 };
-export default SkeletonEpisode;
+export default SkeletonDetailsPage;

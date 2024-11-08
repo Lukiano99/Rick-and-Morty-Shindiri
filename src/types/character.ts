@@ -1,9 +1,9 @@
-export type Origin = {
+type Origin = {
   name: string;
   url: string;
 };
 
-export type Location = {
+type Location = {
   name: string;
   url: string;
 };

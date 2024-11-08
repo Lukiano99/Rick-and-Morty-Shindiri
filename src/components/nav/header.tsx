@@ -1,4 +1,4 @@
-import { useAuth } from "@/hooks/use-auth"; // Koristimo useAuth za pristup korisniku
+import { useAuth } from "@/hooks/use-auth";
 import MainNav from "./main-nav";
 import UserNav from "./user-nav";
 import Logo from "./logo";

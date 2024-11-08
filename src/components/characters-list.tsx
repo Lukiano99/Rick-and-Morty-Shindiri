@@ -22,7 +22,7 @@ const CharacterList = () => {
   useEffect(() => {
     if (!hasFetched.current && characters.length === 0) {
       fetchNextPage();
-      hasFetched.current = true; // Obeležava da je inicijalno fetchovanje obavljeno
+      hasFetched.current = true;
     }
   }, [fetchNextPage, characters.length]);
 

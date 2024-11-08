@@ -13,7 +13,7 @@ import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
 import { Episode } from "@/types";
 import { useFetchMultipleCharacters } from "@/hooks/use-fetch-multiple-characters";
 import { paths } from "@/routes/paths";
-import SkeletonEpisode from "./skeletons/skeleton-episode";
+import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 
 const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -28,7 +28,7 @@ const EpisodeDetails = () => {
 
   const { characters } = useFetchMultipleCharacters(charactersIds);
   if (isLoading) {
-    return <SkeletonEpisode />;
+    return <SkeletonDetailsPage />;
   }
   return (
     <div className="container  w-full">
