@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import {
   ArrowLeftIcon,
+  ArrowUpRightIcon,
   CalendarIcon,
   MapPinIcon,
   TvIcon,
@@ -90,12 +91,16 @@ const CharacterDetails = () => {
               </div>
               {character.origin.url ? (
                 <Link
-                  to={paths.location.details(character.origin.url.slice(-1))}
+                  to={paths.location.details(
+                    character.origin.url.split("/").pop()!
+                  )}
+                  className="group"
                 >
                   <div className="flex items-center gap-2">
                     <MapPinIcon className="h-4 w-4 text-primary" />
-                    <CardDescription>
+                    <CardDescription className="flex items-center group-hover:text-primary group-hover:font-semibold transition-all">
                       Origin: {character.origin.name}
+                      <ArrowUpRightIcon className="size-4 ml-2 scale-0 rotate-90 group-hover:rotate-0 group-hover:scale-100 duration-100" />
                     </CardDescription>
                   </div>
                 </Link>
@@ -107,16 +112,29 @@ const CharacterDetails = () => {
                   </CardDescription>
                 </div>
               )}
-              <Link
-                to={paths.location.details(character.location.url.slice(-1))}
-              >
+              {character.location.url ? (
+                <Link
+                  to={paths.location.details(
+                    character.location.url.split("/").pop()!
+                  )}
+                  className="group"
+                >
+                  <div className="flex items-center gap-2">
+                    <MapPinIcon className="h-4 w-4 text-primary" />
+                    <CardDescription className="flex items-center group-hover:text-primary group-hover:font-semibold transition-all">
+                      Current Location: {character.location.name}
+                      <ArrowUpRightIcon className="size-4 ml-2 scale-0 rotate-90 group-hover:rotate-0 group-hover:scale-100 duration-100" />
+                    </CardDescription>
+                  </div>
+                </Link>
+              ) : (
                 <div className="flex items-center gap-2">
                   <MapPinIcon className="h-4 w-4 text-primary" />
                   <CardDescription>
                     Current Location: {character.location.name}
                   </CardDescription>
                 </div>
-              </Link>
+              )}
 
               <div className="flex items-center gap-2">
                 <CalendarIcon className="h-4 w-4 text-primary" />

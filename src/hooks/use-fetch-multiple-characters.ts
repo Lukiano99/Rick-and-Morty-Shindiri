@@ -22,7 +22,6 @@ export const useFetchMultipleCharacters = (
   );
 
   const hasFetched = useRef(false);
-  console.log("Fetching multiple characters");
   useEffect(() => {
     const fetchCharacters = async () => {
       if (hasFetched.current) return;

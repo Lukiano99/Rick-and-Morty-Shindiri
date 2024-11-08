@@ -16,8 +16,6 @@ export const useFetchSingleCharacter = (
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  console.log("Fethcing single character");
-
   const hasFetched = useRef(false);
 
   useEffect(() => {

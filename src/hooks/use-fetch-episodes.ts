@@ -17,8 +17,6 @@ export const useFetchEpisodes = (
   const memoizedEpisodeIds = useMemo(() => episodeIds.join(","), [episodeIds]);
   const hasFetched = useRef(false);
 
-  console.log("Fethcing episodes");
-
   useEffect(() => {
     const fetchEpisodes = async () => {
       setIsLoading(true);
