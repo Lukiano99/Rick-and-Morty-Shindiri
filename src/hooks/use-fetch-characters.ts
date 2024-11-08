@@ -29,7 +29,6 @@ export const useFetchCharacters = (searchQuery: string) => {
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log({ error });
         toast.error(error.response?.data.error ?? error.message);
       }
 
