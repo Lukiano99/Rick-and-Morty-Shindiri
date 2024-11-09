@@ -1,10 +1,11 @@
+import PageContainer from "@/components/layout/page-container-layout";
 import PageTitle from "@/components/page-title";
 
 const EpisodesPage = () => {
   return (
-    <div className="flex flex-col gap-20">
+    <PageContainer>
       <PageTitle title="Episodes page"></PageTitle>
-    </div>
+    </PageContainer>
   );
 };
 

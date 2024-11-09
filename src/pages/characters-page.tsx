@@ -1,12 +1,13 @@
 import CharacterList from "@/components/characters-list";
+import PageContainer from "@/components/layout/page-container-layout";
 import PageTitle from "@/components/page-title";
 
 const CharactersPage = () => {
   return (
-    <div className="flex flex-col gap-20">
+    <PageContainer>
       <PageTitle title="Characters page" />
       <CharacterList />
-    </div>
+    </PageContainer>
   );
 };
 

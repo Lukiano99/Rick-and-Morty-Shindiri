@@ -1,12 +1,13 @@
 import CharacterDetails from "@/components/character-details";
+import PageContainer from "@/components/layout/page-container-layout";
 import PageTitle from "@/components/page-title";
 
 const CharacterDetailsPage = () => {
   return (
-    <div className="flex flex-col gap-20">
+    <PageContainer fullWidth>
       <PageTitle title="Character details" />
       <CharacterDetails />
-    </div>
+    </PageContainer>
   );
 };
 

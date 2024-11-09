@@ -1,12 +1,13 @@
 import EpisodeDetails from "@/components/episode-details";
+import PageContainer from "@/components/layout/page-container-layout";
 import PageTitle from "@/components/page-title";
 
 const EpisodeDetailsPage = () => {
   return (
-    <div className="flex flex-col gap-20 w-full">
+    <PageContainer fullWidth>
       <PageTitle title="Episode details" />
       <EpisodeDetails />
-    </div>
+    </PageContainer>
   );
 };
 

@@ -4,6 +4,7 @@ import {
   ArrowLeftIcon,
   ArrowUpRightIcon,
   CalendarIcon,
+  ClapperboardIcon,
   MapPinIcon,
   TvIcon,
   UsersIcon,
@@ -45,13 +46,13 @@ const CharacterDetails = () => {
   if (error) return <div>{error.message}</div>;
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <Link to={"/"}>
-        <Button variant="ghost" className="mb-4">
-          <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back to all characters
+    <div className="space-y-4">
+      <Link to={"/"} className="">
+        <Button variant="ghost">
+          <ArrowLeftIcon className="mr-2 size-4" /> Back to all characters
         </Button>
       </Link>
-      <div className="grid gap-6 md:grid-cols-[300px_1fr]">
+      <div className="grid gap-6 md:grid-cols-[300px_1fr] w-full">
         <Card className=" max-h-[430px] overflow-auto">
           <img
             src={character?.image}
@@ -78,15 +79,15 @@ const CharacterDetails = () => {
           </CardContent>
         </Card>
 
-        <div className="space-y-6">
-          <Card>
+        <div className="flex items-start gap-6 w-full">
+          <Card className="min-w-2/5 w-fit">
             <CardHeader>
               <CardTitle>Character Info</CardTitle>
             </CardHeader>
             <CardContent className="grid gap-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center gap-2">
-                  <UsersIcon className="h-4 w-4 text-primary" />
+                  <UsersIcon className="size-4 text-primary" />
                   <CardDescription>Gender: {character.gender}</CardDescription>
                 </div>
                 {character.type && (
@@ -103,7 +104,7 @@ const CharacterDetails = () => {
                   className="group"
                 >
                   <div className="flex items-center gap-2">
-                    <MapPinIcon className="h-4 w-4 text-primary" />
+                    <MapPinIcon className="size-4 text-primary" />
                     <CardDescription className="flex items-center group-hover:text-primary group-hover:font-semibold transition-all">
                       Origin: {character.origin.name}
                       <ArrowUpRightIcon className="size-4 ml-2 scale-0 rotate-90 group-hover:rotate-0 group-hover:scale-100 duration-100" />
@@ -112,7 +113,7 @@ const CharacterDetails = () => {
                 </Link>
               ) : (
                 <div className="flex items-center gap-2">
-                  <MapPinIcon className="h-4 w-4 text-primary" />
+                  <MapPinIcon className="size-4 text-primary" />
                   <CardDescription>
                     Origin: {character.origin.name}
                   </CardDescription>
@@ -126,7 +127,7 @@ const CharacterDetails = () => {
                   className="group"
                 >
                   <div className="flex items-center gap-2">
-                    <MapPinIcon className="h-4 w-4 text-primary" />
+                    <MapPinIcon className="size-4 text-primary" />
                     <CardDescription className="flex items-center group-hover:text-primary group-hover:font-semibold transition-all">
                       Current Location: {character.location.name}
                       <ArrowUpRightIcon className="size-4 ml-2 scale-0 rotate-90 group-hover:rotate-0 group-hover:scale-100 duration-100" />
@@ -135,7 +136,7 @@ const CharacterDetails = () => {
                 </Link>
               ) : (
                 <div className="flex items-center gap-2">
-                  <MapPinIcon className="h-4 w-4 text-primary" />
+                  <MapPinIcon className="size-4 text-primary" />
                   <CardDescription>
                     Current Location: {character.location.name}
                   </CardDescription>
@@ -143,84 +144,94 @@ const CharacterDetails = () => {
               )}
 
               <div className="flex items-center gap-2">
-                <CalendarIcon className="h-4 w-4 text-primary" />
+                <CalendarIcon className="size-4 text-primary" />
                 <CardDescription>
                   Created: {new Date(character.created).toLocaleDateString()}
                 </CardDescription>
               </div>
             </CardContent>
-          </Card>
-
-          <Card className="w-[600px]">
             <CardHeader>
-              <CardTitle>Appearances</CardTitle>
+              <CardTitle>Statistics</CardTitle>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="episodes" className="w-full">
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="episodes">Episodes</TabsTrigger>
-                  <TabsTrigger value="statistics">Statistics</TabsTrigger>
-                </TabsList>
-                {episodes && (
-                  <TabsContent
-                    value="episodes"
-                    className="mt-4 max-h-[250px] overflow-auto flex flex-col gap-2"
-                  >
-                    {episodes.map((ep) => (
-                      <Link to={paths.episode.details(ep.id)} key={ep.id}>
-                        <Button
-                          className="flex justify-between items-center w-full"
-                          variant={"link"}
-                        >
-                          <div className="flex  gap-2">
-                            <span># {ep.id}</span>
-                            <TvIcon className="h-4 w-4 text-primary" />
-                            <span>{ep.name}</span>
-                          </div>
-                          <CardDescription>{ep.air_date}</CardDescription>
-                        </Button>
-                        <Separator />
-                      </Link>
-                    ))}
-                  </TabsContent>
-                )}
-                {episodes && (
-                  <TabsContent value="statistics" className="mt-4">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between w-full">
-                        <p>Total Episodes: </p>
-                        <p>{episodes.length}</p>
-                      </div>
-                      <div className="flex items-center justify-between w-full">
-                        <p>First Appearance:</p>
-                        <Link to={paths.episode.details(episodes.at(0)!.id)}>
-                          <p>
-                            {episodes[0].name}{" "}
-                            <span className="text-muted-foreground">
-                              ({episodes[0].air_date})
-                            </span>
-                          </p>
-                        </Link>
-                      </div>
+              {episodes && (
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-start gap-2">
+                    <CalendarIcon className="size-4 mt-0.5 text-primary" />
+                    <CardDescription className="flex flex-col gap-1">
+                      First Appearance:{" "}
                       <Link
-                        to={paths.episode.details(
-                          episodes.at(episodes.length - 1)!.id
-                        )}
+                        to={paths.episode.details(episodes.at(0)!.id)}
+                        className="group"
                       >
-                        <div className="flex items-center justify-between w-full">
-                          <p>Latest Appearance:</p>
-                          <p>
+                        <p className="text-primary flex flex-col group-hover:text-blue-600 group-hover:underline transition-all">
+                          {episodes[0].name}
+                          <span className="text-muted-foreground italic group-hover:text-blue-600 ">
+                            ({episodes[0].air_date})
+                          </span>
+                        </p>
+                      </Link>
+                    </CardDescription>
+                  </div>
+                  {episodes.length > 1 && (
+                    <div className="flex items-start gap-2">
+                      <CalendarIcon className="size-4 mt-0.5 text-primary" />
+                      <CardDescription className="flex flex-col gap-1">
+                        Latest Appearance:{" "}
+                        <Link
+                          to={paths.episode.details(episodes.at(0)!.id)}
+                          className="group"
+                        >
+                          <p className="text-primary flex flex-col group-hover:text-blue-600 group-hover:underline transition-all">
                             {episodes[episodes.length - 1].name}{" "}
-                            <span className="text-muted-foreground">
+                            <span className="text-muted-foreground italic group-hover:text-blue-600">
                               ({episodes[episodes.length - 1].air_date})
                             </span>
                           </p>
-                        </div>
-                      </Link>
+                        </Link>
+                      </CardDescription>
                     </div>
-                  </TabsContent>
-                )}
-              </Tabs>
+                  )}
+                </div>
+              )}
+            </CardContent>
+          </Card>
+
+          <Card className="w-3/5">
+            <CardHeader className="gap-2">
+              <CardTitle>Appearances</CardTitle>
+              <div className="flex items-center gap-2">
+                <ClapperboardIcon className="size-4 text-primary" />
+                <CardDescription>
+                  Total episodes: {episodes!.length}
+                </CardDescription>
+              </div>
+            </CardHeader>
+            <CardContent>
+              {episodes && (
+                <div className="mt-4 max-h-[320px] overflow-auto flex flex-col gap-2">
+                  {episodes.map((ep) => (
+                    <Link
+                      to={paths.episode.details(ep.id)}
+                      key={ep.id}
+                      className="group"
+                    >
+                      <Button
+                        className="flex justify-between items-center w-full hover:text-blue-600"
+                        variant={"link"}
+                      >
+                        <div className="flex  gap-2">
+                          <span># {ep.id}</span>
+                          <TvIcon className="size-4" />
+                          <span>{ep.name}</span>
+                        </div>
+                        <CardDescription>{ep.air_date}</CardDescription>
+                      </Button>
+                      <Separator />
+                    </Link>
+                  ))}
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

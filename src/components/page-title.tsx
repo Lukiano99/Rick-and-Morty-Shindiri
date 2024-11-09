@@ -3,7 +3,7 @@ interface PageTitleProps {
 }
 const PageTitle = ({ title }: PageTitleProps) => {
   return (
-    <div className="w-full flex items-center justify-start pt-10">
+    <div className="w-full flex items-center justify-start mt-10">
       <h1 className="text-3xl font-semibold">{title}</h1>
     </div>
   );

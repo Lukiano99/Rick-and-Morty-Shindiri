@@ -74,50 +74,45 @@ const LocationDetails = () => {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Residents</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="h-[500px] pr-4">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {residents &&
-                residents.map((resident) => (
-                  <Link
-                    to={paths.characters.details(resident.id)}
-                    key={resident.id}
-                    className="hover:drop-shadow-lg transition-all"
+      <CardHeader className="px-0">
+        <CardTitle className="text-2xl font-bold">Residents</CardTitle>
+      </CardHeader>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {residents &&
+          residents.map((resident) => (
+            <Link
+              to={paths.characters.details(resident.id)}
+              key={resident.id}
+              className="hover:drop-shadow-lg transition-all"
+            >
+              <Card className="overflow-auto">
+                <img
+                  src={resident.image}
+                  alt={resident.name}
+                  className="w-full h-40 object-cover "
+                />
+                <CardContent className="p-2">
+                  <p className="font-medium text-sm truncate">
+                    {resident.name}
+                  </p>
+                  <Badge
+                    variant={
+                      resident.status === "Alive"
+                        ? "success"
+                        : resident.status === "Dead"
+                        ? "destructive"
+                        : "secondary"
+                    }
+                    className="mt-1 capitalize"
                   >
-                    <Card className="overflow-auto">
-                      <img
-                        src={resident.image}
-                        alt={resident.name}
-                        className="w-full h-40 object-cover "
-                      />
-                      <CardContent className="p-2">
-                        <p className="font-medium text-sm truncate">
-                          {resident.name}
-                        </p>
-                        <Badge
-                          variant={
-                            resident.status === "Alive"
-                              ? "success"
-                              : resident.status === "Dead"
-                              ? "destructive"
-                              : "secondary"
-                          }
-                          className="mt-1 capitalize"
-                        >
-                          {resident.status}
-                        </Badge>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+                    {resident.status}
+                  </Badge>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+      </div>
     </div>
   );
 };

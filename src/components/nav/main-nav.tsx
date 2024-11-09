@@ -38,7 +38,7 @@ const MainNav = ({
           path={link.path}
           label={link.label}
           icon={link.icon}
-          selected={location.pathname === link.path}
+          selected={location.pathname.startsWith(link.path)}
         />
       ))}
     </nav>
