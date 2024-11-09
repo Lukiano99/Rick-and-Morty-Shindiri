@@ -16,6 +16,8 @@ import { useAuth } from "./hooks/use-auth";
 import SignUpPage from "./pages/signup-page";
 import Header from "./components/nav/header";
 import MainLayout from "./components/layout/main-layout";
+import EpisodesPage from "./pages/episodes-page";
+import LocationsPage from "./pages/locations-page";
 
 function App() {
   const { userLoggedIn } = useAuth();
@@ -45,6 +47,8 @@ function App() {
           {/* Private routes */}
           <Route element={<PrivateRoute />}>
             <Route path={paths.characters.root} element={<CharactersPage />} />
+            <Route path={paths.episode.root} element={<EpisodesPage />} />
+            <Route path={paths.location.root} element={<LocationsPage />} />
             <Route
               path={`${paths.characters.root}/:id`}
               element={<CharacterDetailsPage />}
