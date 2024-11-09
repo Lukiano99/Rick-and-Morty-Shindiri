@@ -43,18 +43,3 @@ export const useInfiniteCharacters = (name?: string) => {
     refetchOnWindowFocus: false,
   });
 };
-
-/**
-   queryKey: ["characters", name],
-    queryFn: ({ pageParam }) => fetchCharacters({ pageParam, name }),
-    getNextPageParam: (lastPage) => {
-      // Ako postoji sledeća stranica, izvuci broj iz URL-a
-      if (lastPage.info.next) {
-        const url = new URL(lastPage.info.next);
-        return Number(url.searchParams.get("page"));
-      }
-      return undefined; // Kraj paginacije
-    },
-    staleTime: 1000 * 60 * 5, // 5 minuta cache-a
-    refetchOnWindowFocus: false,
- */
