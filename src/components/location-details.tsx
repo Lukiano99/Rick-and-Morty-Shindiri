@@ -10,9 +10,9 @@ import {
 } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { useFetchSingleLocation } from "@/hooks/use-fetch-single-location";
-import { useFetchMultipleCharacters } from "@/hooks/use-fetch-multiple-characters";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { paths } from "@/routes/paths";
+import { useCharacter } from "@/api/fetch-characters";
 
 const LocationDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -24,7 +24,8 @@ const LocationDetails = () => {
       return parseInt(parts[parts.length - 1]);
     }) || [];
 
-  const { characters: residents } = useFetchMultipleCharacters(charactersIds);
+  const { data: residents } = useCharacter(charactersIds);
+
   if (isLoading) {
     return <SkeletonDetailsPage />;
   }

@@ -11,13 +11,15 @@ import {
 import { Badge } from "./ui/badge";
 import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
 import { Episode } from "@/types";
-import { useFetchMultipleCharacters } from "@/hooks/use-fetch-multiple-characters";
 import { paths } from "@/routes/paths";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
+import { useCharacter } from "@/api/fetch-characters";
 
 const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { episodes, isLoading } = useFetchEpisodes([parseInt(id ?? "-1")]);
+  const { episodes, isLoading: isEpisodeLoading } = useFetchEpisodes([
+    parseInt(id ?? "-1"),
+  ]);
   const episode: Episode | undefined = episodes?.at(0);
 
   const charactersIds =
@@ -26,8 +28,9 @@ const EpisodeDetails = () => {
       return parseInt(parts[parts.length - 1]);
     }) || [];
 
-  const { characters } = useFetchMultipleCharacters(charactersIds);
-  if (isLoading) {
+  const { data: characters } = useCharacter(charactersIds);
+
+  if (isEpisodeLoading) {
     return <SkeletonDetailsPage />;
   }
   return (
