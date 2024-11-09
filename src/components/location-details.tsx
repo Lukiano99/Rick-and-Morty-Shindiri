@@ -9,22 +9,24 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { useFetchSingleLocation } from "@/hooks/use-fetch-single-location";
-import { useFetchMultipleCharacters } from "@/hooks/use-fetch-multiple-characters";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { paths } from "@/routes/paths";
+import { useCharacter } from "@/api/fetch-characters";
+import { useLocation } from "@/api/fetch-locations";
 
 const LocationDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { location, isLoading } = useFetchSingleLocation(parseInt(id ?? "-1"));
+  const { data: singleLocation, isLoading } = useLocation(parseInt(id ?? ""));
+  const location = singleLocation && singleLocation[0];
 
   const charactersIds =
     location?.residents.map((url) => {
       const parts = url.split("/");
       return parseInt(parts[parts.length - 1]);
-    }) || [];
+    }) ?? [];
 
-  const { characters: residents } = useFetchMultipleCharacters(charactersIds);
+  const { data: residents } = useCharacter(charactersIds);
+
   if (isLoading) {
     return <SkeletonDetailsPage />;
   }

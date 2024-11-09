@@ -1,4 +1,3 @@
-import { useFetchSingleCharacter } from "@/hooks/use-fetch-single-character";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "./ui/button";
 import {
@@ -18,25 +17,32 @@ import {
 } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Badge } from "./ui/badge";
-import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
 import { paths } from "@/routes/paths";
 import { Separator } from "./ui/separator";
 import SkeletonCharacter from "./skeletons/skeleton-character";
+import { useEpisode } from "@/api/fetch-episodes";
+import { useCharacter } from "@/api/fetch-characters";
 
 const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { character, isLoading, error } = useFetchSingleCharacter(id || "");
+  const {
+    data: singleCharacter,
+    isLoading,
+    error,
+  } = useCharacter(parseInt(id ?? ""));
+  const character = singleCharacter && singleCharacter[0];
 
-  const episodeIds =
-    character?.episode.map((url) => {
-      const parts = url.split("/");
-      return parseInt(parts[parts.length - 1]);
-    }) || [];
+  const episodeIds = character
+    ? character.episode.map((url) => {
+        const parts = url.split("/");
+        return parseInt(parts[parts.length - 1]);
+      })
+    : [];
 
-  const { episodes } = useFetchEpisodes(episodeIds);
+  const { data: episodes } = useEpisode(episodeIds);
 
   if (isLoading || !character) return <SkeletonCharacter />;
-  if (error) return <div>{error}</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <div className="container mx-auto p-4 max-w-4xl">
