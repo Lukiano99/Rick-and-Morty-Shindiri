@@ -20,9 +20,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (user) {
       setCurrentUser({ ...user });
       setUserLoggedIn(true);
+      try {
+        const token = await user.getIdToken();
+        localStorage.setItem("userToken", token);
+      } catch (error) {
+        console.error("Failed to fetch token:", error);
+      }
     } else {
       setCurrentUser(null);
       setUserLoggedIn(false);
+      localStorage.removeItem("userToken");
     }
     setLoading(false);
   }
