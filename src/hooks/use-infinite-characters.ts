@@ -1,11 +1,11 @@
 import { fetchCharacters } from "@/api/fetch-infinite-characters";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export const useInfiniteCharacters = (name?: string) => {
+export const useInfiniteCharacters = (name?: string, status?: string[]) => {
   return useInfiniteQuery({
-    queryKey: ["characters", name],
+    queryKey: ["characters", name, status],
     initialPageParam: 1,
-    queryFn: ({ pageParam }) => fetchCharacters({ pageParam, name }),
+    queryFn: ({ pageParam }) => fetchCharacters({ pageParam, name, status }),
     getNextPageParam: (lastPage) => {
       // Ako postoji sledeća stranica, izvuci broj iz URL-a
       if (lastPage.info.next) {

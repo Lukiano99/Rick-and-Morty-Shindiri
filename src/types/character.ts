@@ -11,7 +11,7 @@ type Location = {
 export type Character = {
   id: number;
   name: string;
-  status: "Alive" | "Dead" | "unknown";
+  status: Status;
   species: string;
   type: string;
   gender: "Male" | "Female" | "Genderless" | "unknown";
@@ -22,3 +22,5 @@ export type Character = {
   url: string;
   created: string;
 };
+
+export type Status = "Alive" | "Dead" | "unknown";

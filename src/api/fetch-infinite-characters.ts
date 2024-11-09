@@ -11,14 +11,16 @@ interface FetchCharactersResponse {
 export const fetchCharacters = async ({
   pageParam = 1,
   name = "",
+  status = [],
 }: {
   pageParam?: number;
   name?: string;
+  status?: string[];
 }): Promise<FetchCharactersResponse> => {
   console.log("Fetching characters page", pageParam);
 
   const response = await axios.get(`${rickAndMortyConfig.characters}`, {
-    params: { page: pageParam, name },
+    params: { page: pageParam, name, status },
   });
 
   return response.data;
