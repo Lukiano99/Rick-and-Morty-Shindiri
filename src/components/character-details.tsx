@@ -18,10 +18,10 @@ import {
 } from "./ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Badge } from "./ui/badge";
-import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
 import { paths } from "@/routes/paths";
 import { Separator } from "./ui/separator";
 import SkeletonCharacter from "./skeletons/skeleton-character";
+import { useEpisode } from "@/api/fetch-episodes";
 
 const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -33,7 +33,7 @@ const CharacterDetails = () => {
       return parseInt(parts[parts.length - 1]);
     }) || [];
 
-  const { episodes } = useFetchEpisodes(episodeIds);
+  const { data: episodes } = useEpisode(episodeIds);
 
   if (isLoading || !character) return <SkeletonCharacter />;
   if (error) return <div>{error}</div>;

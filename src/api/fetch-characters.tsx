@@ -4,6 +4,8 @@ import { Character } from "@/types";
 import { rickAndMortyConfig } from "./rickAndMortyApi";
 
 const fetchCharacter = async (ids: number | number[]): Promise<Character[]> => {
+  console.log("Characters fetching");
+
   const url = Array.isArray(ids)
     ? `${rickAndMortyConfig.characters}/${ids.join(",")}`
     : `${rickAndMortyConfig.characters}/${ids}`;
@@ -16,7 +18,7 @@ export const useCharacter = (ids: number | number[]) => {
   return useQuery({
     queryFn: () => fetchCharacter(ids),
     queryKey: ["character", ids],
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 60 * 5, // 5 minuta cache-a
     refetchOnWindowFocus: false,
   });
 };
