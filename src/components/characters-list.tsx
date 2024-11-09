@@ -8,6 +8,7 @@ import { useInfiniteCharacters } from "@/hooks/use-infinite-characters";
 import CharactersToolbar from "./characters-toolbar";
 import { Status } from "@/types";
 import useIsInViewport from "@/hooks/use-is-in-viewport";
+import EmptySearch from "./empty-search";
 
 const CharacterList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -56,18 +57,13 @@ const CharacterList = () => {
               <CharacterCard character={char} />
             </Link>
           ))}
-        {isLoading && <SkeletonCharacters />}
+        {isLoading && !characters && <SkeletonCharacters />}
+        {characters.length === 0 && (
+          <EmptySearch title="No data" description="Try again" />
+        )}
       </div>
       <div className="w-full flex items-center justify-center">
         <div ref={observerRef} className="w-full h-10" />
-        {/* {hasNextPage && (
-          <LoadingButton
-            onClick={() => fetchNextPage()}
-            isLoading={isFetchingNextPage}
-          >
-            Load More
-          </LoadingButton>
-        )} */}
       </div>
     </div>
   );

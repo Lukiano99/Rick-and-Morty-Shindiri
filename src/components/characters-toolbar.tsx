@@ -44,7 +44,7 @@ const CharactersToolbar = ({
           onChange={(e) => onSearchChange(e.target.value)}
           type="search"
           placeholder="Search for character..."
-          className="md:w-[100px] h-8 lg:w-[300px] focus:ring-0.5 focus:ring-0"
+          className="md:w-[100px] h-12 lg:w-[300px] focus:ring-0.5 focus:ring-0"
         />
 
         <DropDownFilter

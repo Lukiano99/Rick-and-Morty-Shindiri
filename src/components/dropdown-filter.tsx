@@ -39,7 +39,7 @@ const DropDownFilter = ({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 border-dashed">
+        <Button variant="outline" size="sm" className="h-12 border-dashed">
           <PlusCircleIcon />
           {title}
           {selectedValues.length > 0 && (
