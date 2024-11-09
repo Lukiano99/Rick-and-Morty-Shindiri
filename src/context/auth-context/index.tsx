@@ -9,7 +9,6 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [isEmailUser, setIsEmailUser] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,11 +19,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   async function initializeUser(user: User | null) {
     if (user) {
       setCurrentUser({ ...user });
-
-      const isEmail = user.providerData.some(
-        (provider) => provider.providerId === "password"
-      );
-      setIsEmailUser(isEmail);
       setUserLoggedIn(true);
     } else {
       setCurrentUser(null);
@@ -34,7 +28,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }
   const value: AuthContextType = {
     currentUser,
-    isEmailUser,
     userLoggedIn,
     loading,
   };

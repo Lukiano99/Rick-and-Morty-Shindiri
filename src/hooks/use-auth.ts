@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 
 export interface AuthContextType {
   currentUser: User | null;
-  isEmailUser: boolean;
   userLoggedIn: boolean;
   loading: boolean;
 }
