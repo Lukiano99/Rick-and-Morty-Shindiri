@@ -1,7 +1,5 @@
 import { Link, useParams } from "react-router-dom";
 import { paths } from "@/routes/paths";
-import { useCharacter } from "@/api/fetch-characters";
-import { useEpisode } from "@/api/fetch-episodes";
 import { Episode } from "@/types";
 
 import { Button } from "./ui/button";
@@ -15,6 +13,8 @@ import {
 import { Badge } from "./ui/badge";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { ArrowLeftIcon, CalendarIcon, TvIcon, UsersIcon } from "lucide-react";
+import { useEpisode } from "@/hooks/use-episode";
+import { useCharacter } from "@/hooks/use-character";
 
 const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -91,6 +91,7 @@ const EpisodeDetails = () => {
                 <Link
                   to={paths.characters.details(character.id)}
                   key={character.id}
+                  className="hover:drop-shadow-lg transition-all"
                 >
                   <Card className="overflow-hidden">
                     <img

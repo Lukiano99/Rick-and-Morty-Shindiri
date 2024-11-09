@@ -40,7 +40,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
       </div>
       <CardContent className="p-6">
         <div className="flex justify-between items-start mb-4">
-          <div className="">
+          <div>
             <CardTitle className="text-2xl font-bold mb-1">{name}</CardTitle>
             <CardDescription className="text-sm">
               #{id} • {species}

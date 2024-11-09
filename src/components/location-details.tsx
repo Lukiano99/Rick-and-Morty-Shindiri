@@ -11,8 +11,8 @@ import {
 import { Badge } from "./ui/badge";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { paths } from "@/routes/paths";
-import { useCharacter } from "@/api/fetch-characters";
-import { useLocation } from "@/api/fetch-locations";
+import { useLocation } from "@/hooks/use-location";
+import { useCharacter } from "@/hooks/use-character";
 
 const LocationDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -32,7 +32,7 @@ const LocationDetails = () => {
   }
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
+    <div className="container">
       <Link to="/">
         <Button variant="ghost" className="mb-4">
           <ArrowLeft className="mr-2 size-4" /> Back to all characters
@@ -86,13 +86,13 @@ const LocationDetails = () => {
                   <Link
                     to={paths.characters.details(resident.id)}
                     key={resident.id}
-                    className="hover:shadow-lg transition-all"
+                    className="hover:drop-shadow-lg transition-all"
                   >
-                    <Card className="overflow-hidden">
+                    <Card className="overflow-auto">
                       <img
                         src={resident.image}
                         alt={resident.name}
-                        className="w-full h-40 object-cover"
+                        className="w-full h-40 object-cover "
                       />
                       <CardContent className="p-2">
                         <p className="font-medium text-sm truncate">

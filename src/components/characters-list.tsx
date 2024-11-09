@@ -4,9 +4,9 @@ import SearchBox from "./nav/search-box";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
 import useDebounce from "@/hooks/use-debounce";
-import { useInfiniteCharacters } from "@/api/fetch-infinite-characters";
 import LoadingButton from "./loading-button";
 import SkeletonCharacters from "./skeletons/skeleton-characters";
+import { useInfiniteCharacters } from "@/hooks/use-infinite-characters";
 
 const CharacterList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -23,8 +23,9 @@ const CharacterList = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center gap-10">
-      <div className="w-full flex items-center">
+      <div className="w-full flex items-center justify-between">
         <SearchBox onChange={handleSearchChange} />
+        Total: 23
       </div>
       <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
         {characters &&

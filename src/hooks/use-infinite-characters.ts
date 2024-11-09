@@ -1,29 +1,5 @@
-import axios from "axios";
+import { fetchCharacters } from "@/api/fetch-infinite-characters";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Character } from "@/types";
-import { rickAndMortyConfig } from "./rickAndMortyApi";
-interface FetchCharactersResponse {
-  info: {
-    next: string | null;
-  };
-  results: Character[];
-}
-
-const fetchCharacters = async ({
-  pageParam = 1,
-  name = "",
-}: {
-  pageParam?: number;
-  name?: string;
-}): Promise<FetchCharactersResponse> => {
-  console.log("Fetching characters page", pageParam);
-
-  const response = await axios.get(`${rickAndMortyConfig.characters}`, {
-    params: { page: pageParam, name },
-  });
-
-  return response.data;
-};
 
 export const useInfiniteCharacters = (name?: string) => {
   return useInfiniteQuery({

@@ -20,8 +20,8 @@ import { Badge } from "./ui/badge";
 import { paths } from "@/routes/paths";
 import { Separator } from "./ui/separator";
 import SkeletonCharacter from "./skeletons/skeleton-character";
-import { useEpisode } from "@/api/fetch-episodes";
-import { useCharacter } from "@/api/fetch-characters";
+import { useCharacter } from "@/hooks/use-character";
+import { useEpisode } from "@/hooks/use-episode";
 
 const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -52,7 +52,7 @@ const CharacterDetails = () => {
         </Button>
       </Link>
       <div className="grid gap-6 md:grid-cols-[300px_1fr]">
-        <Card className=" max-h-[430px]">
+        <Card className=" max-h-[430px] overflow-auto">
           <img
             src={character?.image}
             alt={"Character image"}
@@ -173,7 +173,7 @@ const CharacterDetails = () => {
                           variant={"link"}
                         >
                           <div className="flex  gap-2">
-                            <span className=""># {ep.id}</span>
+                            <span># {ep.id}</span>
                             <TvIcon className="h-4 w-4 text-primary" />
                             <span>{ep.name}</span>
                           </div>
