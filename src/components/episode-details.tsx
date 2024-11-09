@@ -27,7 +27,7 @@ const EpisodeDetails = () => {
     episode?.characters.map((url) => {
       const parts = url.split("/");
       return parseInt(parts[parts.length - 1]);
-    }) || [];
+    }) ?? [];
 
   const { data: characters } = useCharacter(charactersIds);
 
