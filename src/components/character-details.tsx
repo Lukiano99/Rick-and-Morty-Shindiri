@@ -193,22 +193,30 @@ const CharacterDetails = () => {
                       </div>
                       <div className="flex items-center justify-between w-full">
                         <p>First Appearance:</p>
-                        <p>
-                          {episodes[0].name}{" "}
-                          <span className="text-muted-foreground">
-                            ({episodes[0].air_date})
-                          </span>
-                        </p>
+                        <Link to={paths.episode.details(episodes.at(0)!.id)}>
+                          <p>
+                            {episodes[0].name}{" "}
+                            <span className="text-muted-foreground">
+                              ({episodes[0].air_date})
+                            </span>
+                          </p>
+                        </Link>
                       </div>
-                      <div className="flex items-center justify-between w-full">
-                        <p>Latest Appearance:</p>
-                        <p>
-                          {episodes[episodes.length - 1].name}{" "}
-                          <span className="text-muted-foreground">
-                            ({episodes[episodes.length - 1].air_date})
-                          </span>
-                        </p>
-                      </div>
+                      <Link
+                        to={paths.episode.details(
+                          episodes.at(episodes.length - 1)!.id
+                        )}
+                      >
+                        <div className="flex items-center justify-between w-full">
+                          <p>Latest Appearance:</p>
+                          <p>
+                            {episodes[episodes.length - 1].name}{" "}
+                            <span className="text-muted-foreground">
+                              ({episodes[episodes.length - 1].air_date})
+                            </span>
+                          </p>
+                        </div>
+                      </Link>
                     </div>
                   </TabsContent>
                 )}
