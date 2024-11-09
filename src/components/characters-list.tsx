@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterCard from "./character-card";
-// import SearchBox from "./nav/search-box";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
 import useDebounce from "@/hooks/use-debounce";
-import LoadingButton from "./loading-button";
 import SkeletonCharacters from "./skeletons/skeleton-characters";
 import { useInfiniteCharacters } from "@/hooks/use-infinite-characters";
 import CharactersToolbar from "./characters-toolbar";
 import { Status } from "@/types";
+import useIsInViewport from "@/hooks/use-is-in-viewport";
 
 const CharacterList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -17,8 +16,14 @@ const CharacterList = () => {
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteCharacters(debouncedSearchQuery, statusesFilter);
-
   const characters = data?.pages.flatMap((page) => page.results) || [];
+
+  const { isInViewport, observerRef } = useIsInViewport();
+  useEffect(() => {
+    if (isInViewport && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [isInViewport, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   const handleSearchChange = (value: string) => {
     setSearchQuery(value);
@@ -54,14 +59,15 @@ const CharacterList = () => {
         {isLoading && <SkeletonCharacters />}
       </div>
       <div className="w-full flex items-center justify-center">
-        {hasNextPage && (
+        <div ref={observerRef} className="w-full h-10" />
+        {/* {hasNextPage && (
           <LoadingButton
             onClick={() => fetchNextPage()}
             isLoading={isFetchingNextPage}
           >
             Load More
           </LoadingButton>
-        )}
+        )} */}
       </div>
     </div>
   );

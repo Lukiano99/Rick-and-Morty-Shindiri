@@ -23,7 +23,7 @@ const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
               ? "destructive"
               : "secondary"
           }
-          className="absolute top-3 right-3 gap-2"
+          className="absolute top-3 right-3 gap-2 capitalize"
         >
           <div
             className={cn(

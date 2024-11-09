@@ -3,7 +3,7 @@ import MainNav from "./main-nav";
 import UserNav from "./user-nav";
 import Logo from "./logo";
 import { Separator } from "../ui/separator";
-import NavLayout from "../layout/nav-layout copy";
+import NavLayout from "../layout/nav-layout";
 
 const Header = () => {
   const { userLoggedIn } = useAuth();

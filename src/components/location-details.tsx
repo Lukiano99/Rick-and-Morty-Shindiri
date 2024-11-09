@@ -106,7 +106,7 @@ const LocationDetails = () => {
                               ? "destructive"
                               : "secondary"
                           }
-                          className="mt-1"
+                          className="mt-1 capitalize"
                         >
                           {resident.status}
                         </Badge>

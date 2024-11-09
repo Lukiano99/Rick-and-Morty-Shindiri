@@ -67,7 +67,7 @@ const CharacterDetails = () => {
                   ? "destructive"
                   : "secondary"
               }
-              className="mb-2"
+              className="mb-2 capitalize"
             >
               {character?.status}
             </Badge>
