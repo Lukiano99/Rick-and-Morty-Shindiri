@@ -1,6 +1,10 @@
 import { Link, useParams } from "react-router-dom";
+import { paths } from "@/routes/paths";
+import { useCharacter } from "@/api/fetch-characters";
+import { useEpisode } from "@/api/fetch-episodes";
+import { Episode } from "@/types";
+
 import { Button } from "./ui/button";
-import { ArrowLeftIcon, CalendarIcon, TvIcon, UsersIcon } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,17 +13,14 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { useFetchEpisodes } from "@/hooks/use-fetch-episodes";
-import { Episode } from "@/types";
-import { paths } from "@/routes/paths";
 import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
-import { useCharacter } from "@/api/fetch-characters";
+import { ArrowLeftIcon, CalendarIcon, TvIcon, UsersIcon } from "lucide-react";
 
 const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { episodes, isLoading: isEpisodeLoading } = useFetchEpisodes([
-    parseInt(id ?? "-1"),
-  ]);
+  const { data: episodes, isLoading: isEpisodeLoading } = useEpisode(
+    parseInt(id ?? "")
+  );
   const episode: Episode | undefined = episodes?.at(0);
 
   const charactersIds =

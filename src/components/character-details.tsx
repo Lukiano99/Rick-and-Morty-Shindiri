@@ -29,7 +29,7 @@ const CharacterDetails = () => {
     data: singleCharacter,
     isLoading,
     error,
-  } = useCharacter(parseInt(id || ""));
+  } = useCharacter(parseInt(id ?? ""));
   const character = singleCharacter && singleCharacter[0];
 
   const episodeIds = character
