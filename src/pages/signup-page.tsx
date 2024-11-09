@@ -1,7 +1,7 @@
-import { UserAuthForm } from "@/components/auth/user-auth-form";
+import { SignupCard } from "@/components/auth/signup/signup-card";
 
 const SignUpPage = () => {
-  return <UserAuthForm mode="signup" />;
+  return <SignupCard />;
 };
 
 export default SignUpPage;

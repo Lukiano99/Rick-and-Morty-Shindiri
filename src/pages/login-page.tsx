@@ -1,7 +1,7 @@
-import { UserAuthForm } from "@/components/auth/user-auth-form";
+import { LoginCard } from "@/components/auth/login/login-card";
 
 const LoginPage = () => {
-  return <UserAuthForm mode="login" />;
+  return <LoginCard />;
 };
 
 export default LoginPage;
