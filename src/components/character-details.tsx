@@ -45,18 +45,18 @@ const CharacterDetails = () => {
   if (error) return <div>{error.message}</div>;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 w-full flex flex-col">
       <Link to={"/"} className="">
         <Button variant="ghost">
           <ArrowLeftIcon className="mr-2 size-4" /> Back to characters
         </Button>
       </Link>
-      <div className="grid gap-6 md:grid-cols-[300px_1fr] w-full">
-        <Card className="max-h-[460px] overflow-hidden">
+      <div className="grid gap-6 md:grid-cols-[300px_1fr] grid-cols-1 w-full">
+        <Card className="max-h-[460px] overflow-hidden w-full">
           <img
             src={character?.image}
             alt={"Character image"}
-            className="w-full h-[300px] object-cover"
+            className="h-[300px] w-full object-cover"
           />
           <CardContent className="p-4">
             <Badge
@@ -79,7 +79,8 @@ const CharacterDetails = () => {
         </Card>
 
         <div className="flex items-start gap-6 w-full md:flex-row flex-col">
-          <Card className="md:w-2/5 w-full">
+          {/* <Card className="md:w-2/5 w-fit"> */}
+          <Card className="w-full">
             <CardHeader>
               <CardTitle>Character Info</CardTitle>
             </CardHeader>
@@ -194,10 +195,10 @@ const CharacterDetails = () => {
             </CardContent>
           </Card>
 
-          <Card className="w-full md:w-3/5">
+          <Card className="w-full">
             <CardHeader className="gap-2">
               <CardTitle>Appearances</CardTitle>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 overflow-auto w-fit">
                 <ClapperboardIcon className="size-4 text-primary" />
                 {episodes && (
                   <CardDescription>

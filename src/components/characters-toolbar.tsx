@@ -46,7 +46,7 @@ const ListToolbar = ({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+      <div className="flex md:flex-row flex-col md:flex-1 items-start md:items-center gap-2">
         <div className="relative">
           <Input
             onChange={(e) => onSearchChange(e.target.value)}
