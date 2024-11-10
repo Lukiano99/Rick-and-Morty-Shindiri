@@ -1,5 +1,6 @@
 import {
   CodeIcon,
+  ExternalLink,
   MapPinIcon,
   MenuIcon,
   TvIcon,
@@ -64,11 +65,15 @@ const MobileNavSheet = () => {
                 <li key={item.name}>
                   <Link
                     to={item.href}
-                    className="flex items-center space-x-2 px-4 py-3 text-lg hover:bg-accent rounded-md transition-colors"
+                    className="flex items-center space-x-2 px-4 py-3 relative text-lg hover:bg-accent rounded-md transition-colors"
                     onClick={() => setIsOpen(false)}
+                    target={item.name === "Github code" ? "_blank" : ""}
                   >
                     <item.icon className="h-5 w-5" />
                     <span>{item.name}</span>
+                    {item.name === "Github code" && (
+                      <ExternalLink className="size-4 mb-0.5 absolute right-4" />
+                    )}
                   </Link>
                   <Separator
                     className={cn(
