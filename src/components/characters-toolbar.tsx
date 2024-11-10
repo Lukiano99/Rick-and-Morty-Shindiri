@@ -30,7 +30,7 @@ const statusOptions = [
 interface CharactersToolbarProps {
   onSearchChange: (value: string) => void;
   onStatusChange?: (value: Status[]) => void;
-  searchPlaceHolder?: string;
+  searchPlaceHolder: string;
 }
 const ListToolbar = ({
   onSearchChange,
@@ -51,7 +51,7 @@ const ListToolbar = ({
           <Input
             onChange={(e) => onSearchChange(e.target.value)}
             type="search"
-            placeholder={searchPlaceHolder ?? "Search for character..."}
+            placeholder={searchPlaceHolder}
             className="md:w-[100px] pl-12 h-12 lg:w-[300px] focus:ring-0.5 focus:ring-0"
           />
           <SearchIcon className="absolute size-6 left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />

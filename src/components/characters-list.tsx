@@ -41,6 +41,7 @@ const CharacterList = () => {
         <ListToolbar
           onSearchChange={handleSearchChange}
           onStatusChange={handleStatusChange}
+          searchPlaceHolder="Search for character..."
         />
         <p className="text-muted-foreground flex items-center gap-4">
           Total characters on page:{" "}
