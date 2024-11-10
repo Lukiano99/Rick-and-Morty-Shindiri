@@ -24,17 +24,19 @@ const statusOptions = [
 
 interface CharactersToolbarProps {
   onSearchChange: (value: string) => void;
-  onStatusChange: (value: Status[]) => void;
+  onStatusChange?: (value: Status[]) => void;
+  searchPlaceHolder?: string;
 }
 const CharactersToolbar = ({
   onSearchChange,
   onStatusChange,
+  searchPlaceHolder,
 }: CharactersToolbarProps) => {
   const [, setFilters] = useState<Status[]>([]);
 
   const handleSelectionChange = (selectedValues: Status[]) => {
     setFilters(selectedValues); // Postavlja filtere na osnovu selektovanih vrednosti
-    onStatusChange(selectedValues);
+    if (onStatusChange) onStatusChange(selectedValues);
   };
 
   return (
@@ -43,15 +45,17 @@ const CharactersToolbar = ({
         <Input
           onChange={(e) => onSearchChange(e.target.value)}
           type="search"
-          placeholder="Search for character..."
+          placeholder={searchPlaceHolder ?? "Search for character..."}
           className="md:w-[100px] h-12 lg:w-[300px] focus:ring-0.5 focus:ring-0"
         />
 
-        <DropDownFilter
-          title="Status"
-          options={statusOptions}
-          onSelectionChange={handleSelectionChange}
-        />
+        {onStatusChange && (
+          <DropDownFilter
+            title="Status"
+            options={statusOptions}
+            onSelectionChange={handleSelectionChange}
+          />
+        )}
       </div>
     </div>
   );
