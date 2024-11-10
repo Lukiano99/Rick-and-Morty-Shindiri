@@ -1,12 +1,14 @@
+import { Card } from "../ui/card";
+
 const SkeletonSearch = () => {
   return (
-    <div className="min-w-[1280px] grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
       {Array.from({ length: 6 }).map((_, index) => (
-        <div
+        <Card
           key={index}
-          className="w-full max-w-md rounded overflow-hidden shadow-lg animate-pulse"
+          className="w-full max-w-md overflow-hidden transition-all duration-300 hover:shadow-lg"
         >
-          <div className="bg-gray-300 h-48 w-full mb-4"></div>
+          <div className="bg-gray-300 h-48 mb-4 w-full"></div>
           <div className="p-6 space-y-4">
             <div className="h-6 bg-gray-300 rounded w-3/4"></div>
             <div className="h-4 bg-gray-300 rounded w-1/2"></div>
@@ -21,7 +23,7 @@ const SkeletonSearch = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       ))}
     </div>
   );

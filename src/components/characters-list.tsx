@@ -3,13 +3,13 @@ import CharacterCard from "./character-card";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
 import useDebounce from "@/hooks/use-debounce";
-import SkeletonSearch from "./skeletons/skeleton-characters";
 import ListToolbar from "./characters-toolbar";
 import { Status } from "@/types";
 import useIsInViewport from "@/hooks/use-is-in-viewport";
 import EmptySearch from "./empty-search";
 import useInfiniteCharacters from "@/hooks/use-infinite-characters";
 import { Loader2Icon } from "lucide-react";
+import SkeletonSearch from "./skeletons/skeleton-search";
 
 const CharacterList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");

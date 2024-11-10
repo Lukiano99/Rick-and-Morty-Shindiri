@@ -7,7 +7,7 @@ interface EmptySearchProps {
 
 const EmptySearch = ({ title, description }: EmptySearchProps) => {
   return (
-    <div className="flex flex-col h-full md:min-w-[1280px] items-center justify-center text-center p-6  rounded-lg">
+    <div className="flex border border-dashed flex-col h-full border-muted-foreground md:w-full w-screen md:min-w-[1280px] items-center justify-center text-center p-6  rounded-lg">
       <h2 className="text-xl font-semibold text-accent-foreground mb-2">
         {title}
       </h2>

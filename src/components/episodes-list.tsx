@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
 import useDebounce from "@/hooks/use-debounce";
-import SkeletonSearch from "./skeletons/skeleton-characters";
+import SkeletonSearch from "./skeletons/skeleton-search";
 import ListToolbar from "./characters-toolbar";
 import useIsInViewport from "@/hooks/use-is-in-viewport";
 import EmptySearch from "./empty-search";

@@ -3,7 +3,7 @@ interface MainLayoutProps {
 }
 const NavLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className="max-w-[1280px] flex mx-auto xl:px-0 px-10 z-40">
+    <div className="max-w-[1280px] flex mx-auto xl:px-0 px-4 z-40">
       {children}
     </div>
   );
