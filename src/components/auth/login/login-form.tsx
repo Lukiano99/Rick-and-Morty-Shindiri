@@ -78,7 +78,7 @@ const LoginForm = () => {
         </div>
         <div className="mt-4 text-center text-sm space-y-4">
           Don&apos;t have an account?{" "}
-          <a href={paths.auth.signUp} className="underline">
+          <a href={paths.auth.signup} className="underline">
             Sign up
           </a>
           {errorMessage && (
