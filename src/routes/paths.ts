@@ -15,7 +15,7 @@ export const paths = {
   auth: {
     root: ROOTS.AUTH,
     login: `${ROOTS.AUTH}/login`,
-    signUp: `${ROOTS.AUTH}/signUp`,
+    signUp: `${ROOTS.AUTH}/signup`,
     firebase: {
       signIn: `${ROOTS.AUTH}/firebase/sign-in`,
       verify: `${ROOTS.AUTH}/firebase/verify`,

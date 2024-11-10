@@ -18,6 +18,7 @@ import Header from "./components/nav/header";
 import MainLayout from "./components/layout/main-layout";
 import EpisodesPage from "./pages/episodes-page";
 import LocationsPage from "./pages/locations-page";
+import PublicRoute from "./routes/public-route";
 
 function App() {
   const { userLoggedIn } = useAuth();
@@ -33,17 +34,11 @@ function App() {
       <MainLayout>
         <Routes>
           {/* Public routes */}
-          <Route
-            path={paths.auth.login}
-            element={
-              !userLoggedIn ? (
-                <LoginPage />
-              ) : (
-                <Navigate to={paths.characters.root} />
-              )
-            }
-          />
-          <Route path={paths.auth.signUp} element={<SignUpPage />} />
+          <Route element={<PublicRoute />}>
+            <Route path={paths.auth.login} element={<LoginPage />} />
+            <Route path={paths.auth.signUp} element={<SignUpPage />} />
+          </Route>
+
           {/* Private routes */}
           <Route element={<PrivateRoute />}>
             <Route path={paths.characters.root} element={<CharactersPage />} />
