@@ -1,8 +1,7 @@
-// import { SignupCard } from "@/components/auth/signup/signup-card";
+import { SignupCard } from "@/components/auth/signup/signup-card";
 
 const SignUpPage = () => {
-  // return <SignupCard />;
-  return <div>SIGNUP</div>;
+  return <SignupCard />;
 };
 
 export default SignUpPage;
