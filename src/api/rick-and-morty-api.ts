@@ -1,6 +1,7 @@
+const BASE_URL = "https://rickandmortyapi.com/api";
 export const rickAndMortyConfig = {
-  baseUrl: "https://rickandmortyapi.com/api",
-  characters: "https://rickandmortyapi.com/api/character",
-  locations: "https://rickandmortyapi.com/api/location",
-  episodes: "https://rickandmortyapi.com/api/episode",
+  baseUrl: `${BASE_URL}`,
+  characters: `${BASE_URL}/character`,
+  locations: `${BASE_URL}/location`,
+  episodes: `${BASE_URL}/episode`,
 };

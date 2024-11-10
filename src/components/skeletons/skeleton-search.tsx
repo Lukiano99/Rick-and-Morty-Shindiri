@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 
 const SkeletonSearch = () => {
   return (
-    <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
+    <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-[90dvw] gap-10 md:min-w-[1280px] animate-pulse">
       {Array.from({ length: 6 }).map((_, index) => (
         <Card
           key={index}
