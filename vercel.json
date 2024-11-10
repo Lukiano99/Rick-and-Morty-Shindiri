@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    { "source": "/characters", "destination": "/" },
+    { "source": "/characters/:id", "destination": "/" },
+    { "source": "/episodes", "destination": "/" },
+    { "source": "/episodes/:id", "destination": "/" },
+    { "source": "/locations", "destination": "/" },
+    { "source": "/locations/:id", "destination": "/" },
+    { "source": "/login", "destination": "/" },
+    { "source": "/signup", "destination": "/" },
+    { "source": "/(.*)", "destination": "/" }
+  ]
+}
