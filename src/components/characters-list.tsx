@@ -35,14 +35,14 @@ const CharacterList = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-start justify-center gap-10 min-w-[1280px]">
-      <div className="flex items-center justify-between w-full">
+    <div className="flex flex-col items-start justify-center gap-10 w-full min-w-[1280px]">
+      <div className="flex md:items-center md:gap-0 gap-4 md:flex-row flex-col items-start justify-between w-full">
         <CharactersToolbar
           onSearchChange={handleSearchChange}
           onStatusChange={handleStatusChange}
         />
         <p className="text-muted-foreground">
-          Total characters:{" "}
+          Total characters on page:{" "}
           <span className="text-primary font-semibold">
             {" "}
             {characters.length}
@@ -59,7 +59,9 @@ const CharacterList = () => {
           ))}
         {isLoading && !characters && <SkeletonCharacters />}
         {characters.length === 0 && (
-          <EmptySearch title="No data" description="Try again" />
+          <div className="flex flex-row">
+            <EmptySearch title="Character not found" description="Try again" />
+          </div>
         )}
       </div>
       <div className="w-full flex items-center justify-center">

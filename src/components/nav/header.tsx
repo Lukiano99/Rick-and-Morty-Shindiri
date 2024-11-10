@@ -25,7 +25,7 @@ const Header = () => {
         )}
         {!userLoggedIn && (
           <div className="flex h-16 items-center ">
-            <h1 className="text-xl font-medium">Welcome</h1>
+            <h1 className="text-xl font-semibold">Welcome</h1>
             <div className="ml-auto flex items-center space-x-4"></div>
           </div>
         )}

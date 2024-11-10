@@ -78,39 +78,36 @@ const EpisodeDetails = () => {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">
-            Featured Characters
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="max-h-[800px] overflow-auto">
-          {characters && (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {characters.map((character) => (
-                <Link
-                  to={paths.characters.details(character.id)}
-                  key={character.id}
-                  className="hover:drop-shadow-lg transition-all"
-                >
-                  <Card className="overflow-hidden">
-                    <img
-                      src={character.image}
-                      alt={character.name}
-                      className="w-full h-40 object-cover"
-                    />
-                    <CardContent className="p-2">
-                      <p className="font-medium text-sm truncate">
-                        {character.name}
-                      </p>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          )}
-        </CardContent>
-      </Card>
+      <CardHeader className="px-0">
+        <CardTitle className="text-2xl font-bold">
+          Featured Characters
+        </CardTitle>
+      </CardHeader>
+
+      {characters && (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {characters.map((character) => (
+            <Link
+              to={paths.characters.details(character.id)}
+              key={character.id}
+              className="hover:drop-shadow-lg transition-all"
+            >
+              <Card className="overflow-hidden">
+                <img
+                  src={character.image}
+                  alt={character.name}
+                  className="w-full h-40 object-cover"
+                />
+                <CardContent className="p-2">
+                  <p className="font-medium text-sm truncate">
+                    {character.name}
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

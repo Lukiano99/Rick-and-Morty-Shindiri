@@ -16,7 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Badge } from "./ui/badge";
 import { paths } from "@/routes/paths";
 import { Separator } from "./ui/separator";
@@ -53,7 +52,7 @@ const CharacterDetails = () => {
         </Button>
       </Link>
       <div className="grid gap-6 md:grid-cols-[300px_1fr] w-full">
-        <Card className=" max-h-[430px] overflow-auto">
+        <Card className="max-h-[460px] overflow-hidden">
           <img
             src={character?.image}
             alt={"Character image"}
@@ -79,8 +78,8 @@ const CharacterDetails = () => {
           </CardContent>
         </Card>
 
-        <div className="flex items-start gap-6 w-full">
-          <Card className="min-w-2/5 w-fit">
+        <div className="flex items-start gap-6 w-full md:flex-row flex-col">
+          <Card className="md:w-2/5 w-full">
             <CardHeader>
               <CardTitle>Character Info</CardTitle>
             </CardHeader>
@@ -173,43 +172,43 @@ const CharacterDetails = () => {
                       </Link>
                     </CardDescription>
                   </div>
-                  {episodes.length > 1 && (
-                    <div className="flex items-start gap-2">
-                      <CalendarIcon className="size-4 mt-0.5 text-primary" />
-                      <CardDescription className="flex flex-col gap-1">
-                        Latest Appearance:{" "}
-                        <Link
-                          to={paths.episode.details(episodes.at(0)!.id)}
-                          className="group"
-                        >
-                          <p className="text-primary flex flex-col group-hover:text-blue-600 group-hover:underline transition-all">
-                            {episodes[episodes.length - 1].name}{" "}
-                            <span className="text-muted-foreground italic group-hover:text-blue-600">
-                              ({episodes[episodes.length - 1].air_date})
-                            </span>
-                          </p>
-                        </Link>
-                      </CardDescription>
-                    </div>
-                  )}
+                  <div className="flex items-start gap-2">
+                    <CalendarIcon className="size-4 mt-0.5 text-primary" />
+                    <CardDescription className="flex flex-col gap-1">
+                      Latest Appearance:{" "}
+                      <Link
+                        to={paths.episode.details(episodes.at(0)!.id)}
+                        className="group"
+                      >
+                        <p className="text-primary flex flex-col group-hover:text-blue-600 group-hover:underline transition-all">
+                          {episodes[episodes.length - 1].name}{" "}
+                          <span className="text-muted-foreground italic group-hover:text-blue-600">
+                            ({episodes[episodes.length - 1].air_date})
+                          </span>
+                        </p>
+                      </Link>
+                    </CardDescription>
+                  </div>
                 </div>
               )}
             </CardContent>
           </Card>
 
-          <Card className="w-3/5">
+          <Card className="w-full md:w-3/5">
             <CardHeader className="gap-2">
               <CardTitle>Appearances</CardTitle>
               <div className="flex items-center gap-2">
                 <ClapperboardIcon className="size-4 text-primary" />
-                <CardDescription>
-                  Total episodes: {episodes!.length}
-                </CardDescription>
+                {episodes && (
+                  <CardDescription>
+                    Total episodes: {episodes.length}
+                  </CardDescription>
+                )}
               </div>
             </CardHeader>
             <CardContent>
               {episodes && (
-                <div className="mt-4 max-h-[320px] overflow-auto flex flex-col gap-2">
+                <div className="mt-4 h-[320px] overflow-auto flex flex-col gap-2">
                   {episodes.map((ep) => (
                     <Link
                       to={paths.episode.details(ep.id)}
