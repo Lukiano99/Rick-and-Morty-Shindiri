@@ -5,6 +5,7 @@ const ROOTS = {
   CHARACTERS: "/characters",
   LOCATION: "/location",
   EPISODE: "/episode",
+  GITHUB: "https://github.com/Lukiano99/Rick-and-Morty-Shindiri",
 };
 
 // ----------------------------------------------------------------------
@@ -31,12 +32,17 @@ export const paths = {
   // LOCATION
   location: {
     root: ROOTS.LOCATION,
-    details: (id: string) => `${ROOTS.LOCATION}/${id}`,
+    details: (id: number) => `${ROOTS.LOCATION}/${id}`,
   },
 
   // EPISODE
   episode: {
     root: ROOTS.EPISODE,
     details: (id: number) => `${ROOTS.EPISODE}/${id}`,
+  },
+
+  // Github Lukiano99
+  github: {
+    root: ROOTS.GITHUB,
   },
 };

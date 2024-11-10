@@ -1,7 +1,7 @@
 import { fetchCharacters } from "@/api/fetch-infinite-characters";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export const useInfiniteCharacters = (name?: string, status?: string[]) => {
+const useInfiniteCharacters = (name?: string, status?: string[]) => {
   return useInfiniteQuery({
     queryKey: ["characters", name, status],
     initialPageParam: 1,
@@ -19,3 +19,4 @@ export const useInfiniteCharacters = (name?: string, status?: string[]) => {
     refetchOnWindowFocus: false,
   });
 };
+export default useInfiniteCharacters;

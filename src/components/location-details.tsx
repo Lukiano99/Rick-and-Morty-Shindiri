@@ -33,9 +33,9 @@ const LocationDetails = () => {
 
   return (
     <div className="container">
-      <Link to="/">
+      <Link to={paths.location.root}>
         <Button variant="ghost" className="mb-4">
-          <ArrowLeft className="mr-2 size-4" /> Back to all characters
+          <ArrowLeft className="mr-2 size-4" /> Back to locations
         </Button>
       </Link>
 

@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
-import CharacterCard from "./character-card";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
 import useDebounce from "@/hooks/use-debounce";
 import SkeletonSearch from "./skeletons/skeleton-characters";
 import ListToolbar from "./characters-toolbar";
-import { Status } from "@/types";
 import useIsInViewport from "@/hooks/use-is-in-viewport";
 import EmptySearch from "./empty-search";
-import useInfiniteCharacters from "@/hooks/use-infinite-characters";
+import useInfiniteLocations from "@/hooks/use-infinite-locations";
+import LocationCard from "./location-card";
 import { Loader2Icon } from "lucide-react";
 
-const CharacterList = () => {
+const LocationsList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const debouncedSearchQuery = useDebounce(searchQuery, 500);
-  const [statusesFilter, setStatusesFilter] = useState<Status[]>([]);
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    useInfiniteCharacters(debouncedSearchQuery, statusesFilter);
-  const characters = data?.pages.flatMap((page) => page.results) || [];
+    useInfiniteLocations(debouncedSearchQuery);
+  const locations = data?.pages.flatMap((page) => page.results) || [];
 
   const { isInViewport, observerRef } = useIsInViewport();
   useEffect(() => {
@@ -31,39 +29,35 @@ const CharacterList = () => {
     setSearchQuery(value);
   };
 
-  const handleStatusChange = (value: Status[]) => {
-    setStatusesFilter(value);
-  };
-
   return (
     <div className="flex flex-col items-start justify-center gap-10 w-full md:min-w-[1280px]">
       <div className="flex md:items-center md:gap-0 gap-4 md:flex-row flex-col items-start justify-between w-full">
         <ListToolbar
           onSearchChange={handleSearchChange}
-          onStatusChange={handleStatusChange}
+          searchPlaceHolder={"Search for locations..."}
         />
         <p className="text-muted-foreground flex items-center gap-4">
-          Total characters on page:{" "}
+          Total locations on page:{" "}
           {isLoading && <Loader2Icon className="animate-spin size-4" />}
           {!isLoading && (
             <span className="text-primary font-semibold">
-              {characters.length}
+              {locations.length}
             </span>
           )}
         </p>
       </div>
       <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
-        {characters &&
+        {locations &&
           !isLoading &&
-          characters.map((char) => (
-            <Link to={paths.characters.details(char.id)} key={char.id}>
-              <CharacterCard character={char} />
+          locations.map((location) => (
+            <Link to={paths.location.details(location.id)} key={location.id}>
+              <LocationCard location={location} />
             </Link>
           ))}
         {isLoading && <SkeletonSearch />}
-        {characters.length === 0 && !isLoading && (
-          <div className="flex flex-row">
-            <EmptySearch title="Character not found" description="Try again" />
+        {locations.length === 0 && !isLoading && (
+          <div className="flex flex-row ">
+            <EmptySearch title="Location not found" description="Try again" />
           </div>
         )}
       </div>
@@ -74,4 +68,4 @@ const CharacterList = () => {
   );
 };
 
-export default CharacterList;
+export default LocationsList;

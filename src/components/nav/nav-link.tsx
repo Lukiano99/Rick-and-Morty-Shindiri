@@ -14,8 +14,8 @@ const NavLink = ({ selected, path, icon: Icon, label }: NavLinkProps) => {
     <Link
       to={path}
       className={cn(
-        "group text-sm font-medium transition-all text-muted-foreground flex flex-col",
-        selected && "text-primary"
+        "group text-sm font-medium transition-all hover:text-accent-foreground text-muted-foreground flex flex-col",
+        selected && "text-accent-foreground"
       )}
     >
       <div className="flex items-center gap-2">
@@ -24,7 +24,7 @@ const NavLink = ({ selected, path, icon: Icon, label }: NavLinkProps) => {
       </div>
       <Separator
         className={cn(
-          "bg-red-600 h-[2px] scale-x-0 transition-all group-hover:scale-x-100 m-0 p-0",
+          "bg-red-600 h-[2px] scale-x-0 transition-all m-0 p-0",
           selected && "scale-x-100"
         )}
       />

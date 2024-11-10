@@ -1,4 +1,9 @@
-import { CheckCircleIcon, CircleHelpIcon, XCircleIcon } from "lucide-react";
+import {
+  CheckCircleIcon,
+  CircleHelpIcon,
+  SearchIcon,
+  XCircleIcon,
+} from "lucide-react";
 import DropDownFilter from "./dropdown-filter";
 import { Input } from "./ui/input";
 import { Status } from "@/types";
@@ -27,7 +32,7 @@ interface CharactersToolbarProps {
   onStatusChange?: (value: Status[]) => void;
   searchPlaceHolder?: string;
 }
-const CharactersToolbar = ({
+const ListToolbar = ({
   onSearchChange,
   onStatusChange,
   searchPlaceHolder,
@@ -35,19 +40,22 @@ const CharactersToolbar = ({
   const [, setFilters] = useState<Status[]>([]);
 
   const handleSelectionChange = (selectedValues: Status[]) => {
-    setFilters(selectedValues); // Postavlja filtere na osnovu selektovanih vrednosti
+    setFilters(selectedValues);
     if (onStatusChange) onStatusChange(selectedValues);
   };
 
   return (
     <div className="flex items-center justify-between">
       <div className="flex flex-1 items-center space-x-2">
-        <Input
-          onChange={(e) => onSearchChange(e.target.value)}
-          type="search"
-          placeholder={searchPlaceHolder ?? "Search for character..."}
-          className="md:w-[100px] h-12 lg:w-[300px] focus:ring-0.5 focus:ring-0"
-        />
+        <div className="relative">
+          <Input
+            onChange={(e) => onSearchChange(e.target.value)}
+            type="search"
+            placeholder={searchPlaceHolder ?? "Search for character..."}
+            className="md:w-[100px] pl-12 h-12 lg:w-[300px] focus:ring-0.5 focus:ring-0"
+          />
+          <SearchIcon className="absolute size-6 left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+        </div>
 
         {onStatusChange && (
           <DropDownFilter
@@ -61,4 +69,4 @@ const CharactersToolbar = ({
   );
 };
 
-export default CharactersToolbar;
+export default ListToolbar;

@@ -46,8 +46,14 @@ const UserNav = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Favourite characters</DropdownMenuItem>
+          <DropdownMenuItem disabled={true}>
+            Profile
+            <DropdownMenuShortcut>soon</DropdownMenuShortcut>
+          </DropdownMenuItem>
+          <DropdownMenuItem disabled={true}>
+            Favourite characters
+            <DropdownMenuShortcut>soon</DropdownMenuShortcut>
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="text-red-500" onClick={handleLogout}>

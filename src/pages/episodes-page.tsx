@@ -4,7 +4,7 @@ import PageTitle from "@/components/page-title";
 
 const EpisodesPage = () => {
   return (
-    <PageContainer>
+    <PageContainer fullWidth>
       <PageTitle title="Episodes page"></PageTitle>
       <EpisodesList />
     </PageContainer>

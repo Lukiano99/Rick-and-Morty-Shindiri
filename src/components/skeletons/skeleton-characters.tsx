@@ -1,4 +1,4 @@
-const SkeletonCharacters = () => {
+const SkeletonSearch = () => {
   return (
     <div className="min-w-[1280px] grid grid-cols-1 md:grid-cols-3 gap-10">
       {Array.from({ length: 6 }).map((_, index) => (
@@ -27,4 +27,4 @@ const SkeletonCharacters = () => {
   );
 };
 
-export default SkeletonCharacters;
+export default SkeletonSearch;

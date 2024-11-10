@@ -36,9 +36,9 @@ const EpisodeDetails = () => {
   }
   return (
     <div className="container  w-full">
-      <Link to="/">
+      <Link to={paths.episode.root}>
         <Button variant="ghost" className="mb-4">
-          <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back to characters
+          <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back to episodes
         </Button>
       </Link>
 

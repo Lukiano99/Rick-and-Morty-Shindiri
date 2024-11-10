@@ -48,7 +48,7 @@ const CharacterDetails = () => {
     <div className="space-y-4">
       <Link to={"/"} className="">
         <Button variant="ghost">
-          <ArrowLeftIcon className="mr-2 size-4" /> Back to all characters
+          <ArrowLeftIcon className="mr-2 size-4" /> Back to characters
         </Button>
       </Link>
       <div className="grid gap-6 md:grid-cols-[300px_1fr] w-full">
@@ -98,7 +98,7 @@ const CharacterDetails = () => {
               {character.origin.url ? (
                 <Link
                   to={paths.location.details(
-                    character.origin.url.split("/").pop()!
+                    parseInt(character.origin.url.split("/").pop()!)
                   )}
                   className="group"
                 >
@@ -121,7 +121,7 @@ const CharacterDetails = () => {
               {character.location.url ? (
                 <Link
                   to={paths.location.details(
-                    character.location.url.split("/").pop()!
+                    parseInt(character.location.url.split("/").pop()!)
                   )}
                   className="group"
                 >
