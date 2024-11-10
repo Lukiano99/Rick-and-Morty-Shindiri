@@ -49,11 +49,7 @@ const MobileNavSheet = () => {
               className="flex items-center space-x-2"
               onClick={() => setIsOpen(false)}
             >
-              <img
-                src="/src/assets/shindiri-logo.svg"
-                alt="Logo"
-                className="h-8 w-8"
-              />
+              <img src="/shindiri-logo.svg" alt="Logo" className="h-8 w-8" />
               <span className="font-bold text-xl">Shindiri X Lukiano</span>
             </Link>
           </SheetTitle>
