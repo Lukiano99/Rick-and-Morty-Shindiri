@@ -62,6 +62,11 @@ const EpisodesList = () => {
           </div>
         )}
       </div>
+      {(isFetchingNextPage || isLoading) && (
+        <div className="w-full flex items-center justify-center">
+          <Loader2Icon className="animate-spin" />
+        </div>
+      )}
       <div className="w-full flex items-center justify-center">
         <div ref={observerRef} className="w-full h-10" />
       </div>

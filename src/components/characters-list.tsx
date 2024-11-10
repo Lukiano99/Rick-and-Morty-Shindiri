@@ -52,6 +52,7 @@ const CharacterList = () => {
           )}
         </p>
       </div>
+
       <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
         {characters &&
           !isLoading &&
@@ -67,6 +68,11 @@ const CharacterList = () => {
           </div>
         )}
       </div>
+      {(isFetchingNextPage || isLoading) && (
+        <div className="w-full flex items-center justify-center">
+          <Loader2Icon className="animate-spin" />
+        </div>
+      )}
       <div className="w-full flex items-center justify-center">
         <div ref={observerRef} className="w-full h-10" />
       </div>
