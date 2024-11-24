@@ -13,6 +13,7 @@ import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { paths } from "@/routes/paths";
 import { useLocation } from "@/hooks/use-location";
 import { useCharacter } from "@/hooks/use-character";
+import EmptySearch from "./empty-search";
 
 const LocationDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -29,6 +30,11 @@ const LocationDetails = () => {
 
   if (isLoading) {
     return <SkeletonDetailsPage />;
+  }
+  if (!location) {
+    return (
+      <EmptySearch title="Location not found" description="Check provided id" />
+    );
   }
 
   return (

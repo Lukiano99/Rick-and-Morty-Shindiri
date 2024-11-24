@@ -12,6 +12,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // This unsubscribe can be used for clean up
+    // When the Auth provider component is going to be unmounted
+    // then we can simply return this unsubscribe function
     const unsubscribe = onAuthStateChanged(auth, initializeUser);
     return unsubscribe;
   }, []);
@@ -33,6 +36,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
     setLoading(false);
   }
+
   const value: AuthContextType = {
     currentUser,
     userLoggedIn,

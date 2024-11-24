@@ -3,8 +3,8 @@
 const ROOTS = {
   AUTH: "/auth",
   CHARACTERS: "/characters",
-  LOCATION: "/location",
-  EPISODE: "/episode",
+  LOCATION: "/locations",
+  EPISODE: "/episodes",
   GITHUB: "https://github.com/Lukiano99/Rick-and-Morty-Shindiri",
 };
 

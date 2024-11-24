@@ -13,14 +13,17 @@ import SkeletonSearch from "./skeletons/skeleton-search";
 
 const CharacterList = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+
   const [statusesFilter, setStatusesFilter] = useState<Status[]>([]);
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
+
+  const { isInViewport, observerRef } = useIsInViewport();
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     useInfiniteCharacters(debouncedSearchQuery, statusesFilter);
   const characters = data?.pages.flatMap((page) => page.results) || [];
 
-  const { isInViewport, observerRef } = useIsInViewport();
   useEffect(() => {
     if (isInViewport && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
@@ -57,9 +60,12 @@ const CharacterList = () => {
       <div className="grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 w-full gap-10">
         {characters &&
           !isLoading &&
-          characters.map((char) => (
-            <Link to={paths.characters.details(char.id)} key={char.id}>
-              <CharacterCard character={char} />
+          characters.map((character) => (
+            <Link
+              to={paths.characters.details(character.id)}
+              key={character.id}
+            >
+              <CharacterCard character={character} />
             </Link>
           ))}
         {isLoading && <SkeletonSearch />}

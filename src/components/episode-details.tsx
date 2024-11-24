@@ -15,6 +15,7 @@ import SkeletonDetailsPage from "./skeletons/skeleton-details-page";
 import { ArrowLeftIcon, CalendarIcon, TvIcon, UsersIcon } from "lucide-react";
 import { useEpisode } from "@/hooks/use-episode";
 import { useCharacter } from "@/hooks/use-character";
+import EmptySearch from "./empty-search";
 
 const EpisodeDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,6 +35,12 @@ const EpisodeDetails = () => {
   if (isEpisodeLoading) {
     return <SkeletonDetailsPage />;
   }
+  if (!episode) {
+    return (
+      <EmptySearch title="Episode not found" description="Check provided id" />
+    );
+  }
+
   return (
     <div className="container  w-full">
       <Link to={paths.episode.root}>

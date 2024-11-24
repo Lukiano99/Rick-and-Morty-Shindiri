@@ -10,13 +10,12 @@ export const AuthContext = React.createContext<AuthContextType | undefined>(
   undefined
 );
 
-export const useAuth = () => {
-  if (AuthContext === undefined) {
+export const useAuth = (): AuthContextType => {
+  const userContext = useContext(AuthContext);
+
+  if (userContext === undefined) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
-  const user = useContext(AuthContext);
-  if (user === undefined) {
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return user;
+
+  return userContext;
 };

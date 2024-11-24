@@ -22,6 +22,7 @@ import { Separator } from "./ui/separator";
 import SkeletonCharacter from "./skeletons/skeleton-character";
 import { useCharacter } from "@/hooks/use-character";
 import { useEpisode } from "@/hooks/use-episode";
+import EmptySearch from "./empty-search";
 
 const CharacterDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -42,6 +43,13 @@ const CharacterDetails = () => {
   const { data: episodes } = useEpisode(episodeIds);
 
   if (isLoading || !character) return <SkeletonCharacter />;
+  if (!character)
+    return (
+      <EmptySearch
+        title="Character not found"
+        description="Be carefull about character id"
+      />
+    );
   if (error) return <div>{error.message}</div>;
 
   return (
