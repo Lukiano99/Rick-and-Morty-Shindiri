@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 import { Character } from "@/types";
 import { Card, CardContent, CardDescription, CardTitle } from "./ui/card";
 import { EyeIcon, MapPinIcon } from "lucide-react";
@@ -11,6 +11,7 @@ interface CharacterCardProps {
 
 const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   const { id, name, image, status, species, location, episode } = character;
+
   return (
     <Card className="w-full max-w-md overflow-hidden transition-all duration-300 hover:shadow-lg">
       <div className="relative">
@@ -68,4 +69,4 @@ const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
   );
 };
 
-export default CharacterCard;
+export default memo(CharacterCard);

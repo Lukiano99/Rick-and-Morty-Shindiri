@@ -7,7 +7,7 @@ import {
 import DropDownFilter from "./dropdown-filter";
 import { Input } from "./ui/input";
 import { Status } from "@/types";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 const statusOptions = [
   {
@@ -43,7 +43,7 @@ const ListToolbar = ({
     setFilters(selectedValues);
     if (onStatusChange) onStatusChange(selectedValues);
   };
-
+  console.log("Toolbar rendered!");
   return (
     <div className="flex items-center justify-between">
       <div className="flex md:flex-row flex-col md:flex-1 items-start md:items-center gap-2">
@@ -69,4 +69,4 @@ const ListToolbar = ({
   );
 };
 
-export default ListToolbar;
+export default memo(ListToolbar);

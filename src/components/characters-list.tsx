@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CharacterCard from "./character-card";
 import { Link } from "react-router-dom";
 import { paths } from "@/routes/paths";
@@ -30,13 +30,13 @@ const CharacterList = () => {
     }
   }, [isInViewport, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  const handleSearchChange = (value: string) => {
+  const handleSearchChange = useCallback((value: string) => {
     setSearchQuery(value);
-  };
+  }, []);
 
-  const handleStatusChange = (value: Status[]) => {
+  const handleStatusChange = useCallback((value: Status[]) => {
     setStatusesFilter(value);
-  };
+  }, []);
 
   return (
     <div className="flex flex-col items-start justify-center gap-10 w-full md:min-w-[1280px]">
