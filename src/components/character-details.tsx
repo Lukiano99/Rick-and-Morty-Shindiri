@@ -31,7 +31,7 @@ const CharacterDetails = () => {
     error,
   } = useCharacter(parseInt(id ?? ""));
   const character = singleCharacter && singleCharacter[0];
-
+  console.log({ character });
   const episodeIds = character
     ? character.episode.map((url) => {
         const parts = url.split("/");
